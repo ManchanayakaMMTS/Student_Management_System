@@ -1,0 +1,92 @@
+﻿<Window x:Class="Student_Management_System.Views.AddModule"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Student_Management_System.ViewModels"
+        mc:Ignorable="d"
+        Title="AddModule" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+    
+    <Window.DataContext>
+        <local:AddModuleViewModel/>
+    </Window.DataContext>
+    
+    <Grid>
+
+        <Border CornerRadius="0" BorderThickness="0">
+
+            <Border>
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#000033" Offset="0.95" />
+                        <GradientStop Color="#001a33" Offset="0.8" />
+                        <GradientStop Color="#001a33" Offset="0.25" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="25" Color="Black" Opacity="0.7" BlurRadius="10" Direction="45"/>
+            </Border.Effect>
+
+            <Border.BorderBrush>
+                <SolidColorBrush Color="Black"/>
+            </Border.BorderBrush>
+
+        </Border>
+
+        <StackPanel Orientation="Vertical">
+
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Margin="00 25 0 0" Height="20">
+                <TextBlock Text="Student Reg.No :" Width="100" Foreground="White" Margin="5 0 0 0" Style="{StaticResource ListViewTitle}"/>
+                <TextBlock Text="{Binding SelectedStudent1.RegNo,UpdateSourceTrigger=PropertyChanged}" Width="100" Foreground="White" Style="{StaticResource ListViewTitle}"/>
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Margin="0 5 0 0" Height="20">
+                <TextBlock Text="Student Name   :" Margin="7 0 0 0" Width="100" Foreground="White" Style="{StaticResource ListViewTitle}"/>
+                <TextBlock Text="{Binding SelectedStudent1.FirstName,UpdateSourceTrigger=PropertyChanged}" Width="100" Foreground="White" Style="{StaticResource ListViewTitle}"/>
+            </StackPanel>
+
+
+        </StackPanel>
+
+
+        <StackPanel HorizontalAlignment="Center" Margin="0 100 0 0" Orientation="Vertical">
+            <Grid>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel>
+                        <TextBlock Text="Modules" Foreground="White" Margin="45 0 0 0" Style="{StaticResource ListViewTitle}"/>
+                        <ListBox Height="200" ItemsSource="{Binding ListAllModule}" SelectedItem="{Binding SelectedModule}"  Width="250">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Background="LightCyan" Orientation="Horizontal" HorizontalAlignment="Left" Width="250" >
+                                        <TextBlock Width="50" Margin="5" Text="{Binding Code}"/>
+                                        <TextBlock Width="200" Margin="5" Text="{Binding Name}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <Button Content="Enroll" Width="100" Margin="10" Command="{Binding RegisterCommand}" Style="{StaticResource ButtonText3}"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="20 0 0 0">
+                        <TextBlock Text="Enrolled modules" Margin="10 0 0 0" Style="{StaticResource ListViewTitle}" Foreground="White"/>
+                        <ListBox Height="200" ItemsSource="{Binding ListRegModules,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedModule1}"  Width="250">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Background="LightCyan" Orientation="Horizontal" HorizontalAlignment="Left" Width="250" >
+                                        <TextBlock Width="50" Margin="5" Text="{Binding Code}"/>
+                                        <TextBlock Width="200" Margin="5" Text="{Binding Name}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <Button Content="Remove" Width="100" Margin="10" Command="{Binding RemoveCommand}" Style="{StaticResource ButtonText3}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>
